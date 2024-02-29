@@ -46,6 +46,14 @@ func InitConfig() *Config {
 	flag.IntVar(&cfg.Port, "port", cfg.Port, "set up the port to listen on")
 	flag.IntVar(&cfg.Port, "p", cfg.Port, "set up the port to listen on")
 
+	if portStr, ok := os.LookupEnv("PORT"); ok {
+		if port, err := strconv.Atoi(portStr); err == nil {
+			cfg.Port = port
+		} else {
+			log.Printf("Invalid port number: %v", err)
+		}
+	}
+
 	flag.StringVar(&cfg.Token, "token", "", "set the access token for /translate endpoint")
 	if cfg.Token == "" {
 		if token, ok := os.LookupEnv("TOKEN"); ok {
