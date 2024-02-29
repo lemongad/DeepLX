@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 FROM golang:1.19 AS builder
-WORKDIR /go/src/github.com/OwO-Network/DeepLX
+WORKDIR /go/src/github.com/lemongad/DeepLX
 COPY main.go ./
 COPY go.mod ./
 COPY go.sum ./
